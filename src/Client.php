@@ -5,7 +5,7 @@ namespace Vantevo;
 class Client
 {
     const DEFAULT_BASE_URL = "https://api.vantevo.io";
-    const SEND_EVENT_API = "http://localhost:5021/v1/event";
+    const SEND_EVENT_API = "https://api.vantevo.io/v1/event";
     const STATS_API = "https://api.vantevo.io/v1/";
 
 

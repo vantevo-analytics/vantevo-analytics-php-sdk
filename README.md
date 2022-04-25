@@ -82,7 +82,7 @@ try {
 
 ```php
 try {
-    $data = array("source" => "pages", "period" => "1m"));
+    $data = array("source" => "pages", "period" => "1m");
 	$stats = $client->stats($data);
 } catch (Exception $e) {
 	// something went wrong...

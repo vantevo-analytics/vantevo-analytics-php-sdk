@@ -9,6 +9,7 @@
         "client",
         "api"
     ],
+    "version": "1.0.0-beta1",
     "homepage": "https://vantevo.io/",
     "license": "MIT",
     "authors": [

@@ -1,0 +1,40 @@
+{
+    "name": "vantevo-analytics/sdk",
+    "type": "library",
+    "description": "PHP Client SDK for Vantevo Analytics.",
+    "keywords": [
+        "vantevo",
+        "analytics",
+        "sdk",
+        "client",
+        "api"
+    ],
+    "homepage": "https://vantevo.io/",
+    "license": "MIT",
+    "version": "1.0.0-beta1",
+    "authors": [
+        {
+            "name": "Vantevo Analytics",
+            "email": "info@vantevo.io",
+            "homepage": "https://vantevo.io",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "info@vantevo.io"
+    },
+    "require": {
+        "php": ">=7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Vantevo\\": "src/"
+        }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/vantevo-analytics/vantevo-analytics-php-sdk"
+        }
+    ]
+}

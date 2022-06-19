@@ -1,4 +1,4 @@
-# The analysis of your website, but simpler
+# The analytics of your website, but simpler
  
 **Vantevo Analytics** is the alternative platform to Google Analytics that respects privacy, because it does not need cookies not compliant with the GDPR. Easy to use, light and can be integrated into any website and back-end.
  

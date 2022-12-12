@@ -6,6 +6,7 @@ class Client
 {
     const DEFAULT_BASE_URL = "https://api.vantevo.io";
     const SEND_EVENT_API = "https://api.vantevo.io/v1/event";
+    const SEND_EVENT_ECOMMERCE_API = "https://api.vantevo.io/v1/event-ecommerce";
     const STATS_API = "https://api.vantevo.io/v1/";
 
 
@@ -42,9 +43,9 @@ class Client
             "title" => null,
             "url" => $this->getRequestURL(),
             "referrer" => $this->getReferrer(),
-            "width" => null,
-            "height" => null,
-            "meta" => json_encode([]),
+            "width" => 0,
+            "height" => 0,
+            "meta" => json_encode([])
         );
 
         $hit = array_merge($default_hit, $event);
@@ -72,6 +73,51 @@ class Client
         if ($result === FALSE) {
             if ($retry) {
                 return  $this->event($event, false);
+            } else {
+                $responseHeader = $http_response_header[0];
+                throw new \Exception('Error request: ' . $responseHeader);
+            }
+        }
+
+        return $result;
+    }
+
+    function trackEcommerce($event, $retry = true)
+    {
+
+        $default_hit = array(
+            "title" => null,
+            "url" => $this->getRequestURL(),
+            "referrer" => $this->getReferrer(),
+            "width" => 0,
+            "height" => 0
+        );
+
+        $hit = array_merge($default_hit, $event);
+
+        if ($this->dev) {
+            return print_r($hit);
+        }
+
+        $options = array(
+            'http' => array(
+                'method' => 'POST',
+                'header' => array(
+                    'Content-Type: application/json',
+                    'User-Agent: ' . $this->getHeader("HTTP_USER_AGENT")
+                ),
+                'content' => json_encode($hit),
+                'timeout' => $this->timeout
+            )
+        );
+
+        $context = stream_context_create($options);
+        $result = @file_get_contents(self::SEND_EVENT_ECOMMERCE_API, false, $context);
+
+
+        if ($result === FALSE) {
+            if ($retry) {
+                return  $this->trackEcommerce($event, false);
             } else {
                 $responseHeader = $http_response_header[0];
                 throw new \Exception('Error request: ' . $responseHeader);
